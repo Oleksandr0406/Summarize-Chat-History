@@ -48,7 +48,7 @@ def answer_question(msg: str):
     # ------------------------------------ summarization part ------------------------------------
     
     chat_history = ""
-    for message in saved_messages[-6:]:
+    for message in saved_messages:
         chat_history += f"\n{message.role}: {message.content}"
     chat_history += f"\n user: {msg}"
     chat_history += f"\n assistant: {final}"
@@ -56,6 +56,7 @@ def answer_question(msg: str):
     instructor = """
         You will act as a conversation summarizer.
         Please understand below conversation provided by user and output summarization so that chatGPT can continue the conversation with user based on it.
+        The length of the summarization should be 10 percentage of total conversation's length.
     """
     try:
         response = openai.ChatCompletion.create(
@@ -67,11 +68,11 @@ def answer_question(msg: str):
             ],
             stream=False
         )
-        summarization = response.choices[0].message.content
-        print("summarization: ", summarization)
+        summary = response.choices[0].message.content
+        print("summarization: ", summary)
     except Exception as e:
         print(e)
     
-    save_summary_in_db(logId=log_id, summarization=summarization)
+    save_summary_in_db(logId=log_id, summary=summary)
     add_new_message(logId=log_id, msg=Message(content=msg, role="user"))
     add_new_message(logId=log_id, msg=Message(content=final, role="assistant"))
