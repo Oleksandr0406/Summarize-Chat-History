@@ -58,6 +58,7 @@ def answer_question(msg: str):
         Please understand below conversation provided by user and output summarization so that chatGPT can continue the conversation with user based on it.
         The length of the summarization should be 10 percentage of total conversation's length.
     """
+    summary = ""
     try:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-16k",
