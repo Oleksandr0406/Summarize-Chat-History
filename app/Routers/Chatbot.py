@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Form, UploadFile, File, Request
 from fastapi.responses import StreamingResponse
 from app.Utils.Answer_Question import answer_question
-from app.Models.Chatbot_Model import Question_Model, delete_summary_db_id
+from app.Models.Chatbot_Model import Question_Model
+from app.Models.ChatLog_Model import delete_summary_db_id
 import time
 import asyncio
 import os
