@@ -9,8 +9,6 @@ from datetime import datetime, timedelta
 from app.Models.ChatLog_Model import find_messages_by_id, add_new_message, Message, find_summary_by_id, save_summary_in_db
 load_dotenv()
 
-openai.api_key = "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"
-
 def answer_question(msg: str):
     final = ""
     log_id = "goldrace"
@@ -31,7 +29,7 @@ def answer_question(msg: str):
     """
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4-1106-preview",
+            model="gpt-3.5-turbo-16k",
             max_tokens=3000,
             messages=[
                 {'role': 'system', 'content': instructor},

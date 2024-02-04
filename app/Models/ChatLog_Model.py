@@ -92,3 +92,4 @@ def find_summary_by_id(logId: str):
 
 def delete_summary_db_id(logId: str):
     SummaryDB.delete_one({"logId": logId})
+    ChatlogsDB.delete_one({"logId": logId})
