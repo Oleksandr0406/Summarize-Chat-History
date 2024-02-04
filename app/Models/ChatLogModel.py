@@ -89,3 +89,6 @@ def find_summary_by_id(logId: str):
     if result == None:
         return ""
     return Summary(**result).Summary
+
+def delete_summary_db_id(logId: str):
+    SummaryDB.delete_one({"logId": logId})

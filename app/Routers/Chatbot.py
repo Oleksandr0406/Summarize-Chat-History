@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Form, UploadFile, File, Request
 from fastapi.responses import StreamingResponse
 from app.Utils.Answer_Question import answer_question
-from app.Models.Chatbot_Model import Question_Model
+from app.Models.Chatbot_Model import Question_Model, delete_summary_db_id
 import time
 import asyncio
 import os
@@ -19,3 +19,8 @@ def answer_user_question(msg: str = Form(...)):
     except Exception as e:
         print(e)
         return e
+
+@router.post("/create-new-thread")
+def create_new_thread():
+    log_id = "goldrace"
+    delete_summary_db_id(log_id)
