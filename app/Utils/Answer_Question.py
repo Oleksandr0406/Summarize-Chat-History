@@ -6,7 +6,7 @@ import time
 import json
 import sys
 from datetime import datetime, timedelta
-from app.Models.ChatLogModel import find_messages_by_id, add_new_message, Message, find_summary_by_id, save_summary_in_db
+from app.Models.ChatLog_Model import find_messages_by_id, add_new_message, Message, find_summary_by_id, save_summary_in_db
 load_dotenv()
 
 def answer_question(msg: str):
