@@ -41,7 +41,7 @@ def answer_question(msg: str):
     yield history_summary
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-16k",
+            model="gpt-4-1106-preview",
             max_tokens=3000,
             messages=[
                 {'role': 'system', 'content': instructor},
