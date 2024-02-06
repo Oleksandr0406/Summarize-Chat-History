@@ -67,8 +67,10 @@ def answer_question(msg: str):
     
     instructor = """
         You will act as a conversation summarizer.
-        Please understand below conversation provided by user and output summarization so that chatGPT can continue the conversation with user based on it.
-        The length of the summarization should be 10 percentage of total conversation's length.
+        Summarize the entire conversation provided below, focusing on capturing the key points, questions, answers, main topics, decisions made, and any action items or conclusions reached.
+        The summary should maintain the context, intent, and overall sentiment of the dialogue, condensing the essence of the discussion into a concise format.
+        Aim for the summary to be approximately 10% of the original conversation's length, ensuring that critical details are preserved for continuity and that it serves as a standalone context for seamlessly continuing the conversation.
+        Provide the summary in a structured and clear manner, highlighting essential points and developments to facilitate an understanding of the conversation's progression.
     """
     summary = ""
     try:
