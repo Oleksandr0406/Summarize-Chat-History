@@ -27,6 +27,16 @@ def answer_question(msg: str):
         chat history summarization:
         {history_summary}
     """
+    
+    
+    history_summary = f"""
+        Summary of chat so far:
+        {history_summary}
+        
+        ****************************************
+        
+    """
+    yield history_summary
     try:
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-16k",
