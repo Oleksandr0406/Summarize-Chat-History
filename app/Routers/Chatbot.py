@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Form, UploadFile, File, Request, HTTPException
 from fastapi.responses import StreamingResponse
-from app.Utils.Answer_Question import answer_question
+from app.Utils.Answer_Question import answer_question, transcribe_audio
 from app.Models.Chatbot_Model import Question_Model
 from app.Models.ChatLog_Model import delete_summary_db_id
 from app.Utils.Pinecone import train_csv, train_ms_word, train_ms_word, train_pdf
+
 import time
 import asyncio
 import os
@@ -13,11 +14,12 @@ import shutil
 router = APIRouter()
 
 
-@router.post("/user-question")
+@router.get("/user-question")
 # def answer_user_question(question: Question_Model):
-def answer_user_question(msg: str = Form(...)):
+def answer_user_question(msg: str):
     try:
-        return StreamingResponse(answer_question(msg), media_type='text/event-stream')
+        # return StreamingResponse(answer_question(msg), media_type='text/event-stream')
+        return answer_question(msg)
     except Exception as e:
         print(e)
         return e
@@ -63,3 +65,10 @@ def add_training_file_api(file: UploadFile = File(...)):
         print(e)
         raise HTTPException(
             status_code=500, detail=e)
+        
+
+@router.post("/transcribe")
+def whipser(file: UploadFile = File(...)):
+    with open(f'data/{file.filename}', "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    return transcribe_audio(file.filename)

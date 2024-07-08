@@ -146,7 +146,7 @@ def train_txt(filename: str, namespace: str):
 def train_ms_word(filename: str, namespace: str):
     start_time = time.time()
     # Load the Word document using the Docx2txtLoader
-    loader = Docx2txtLoader(file_path=f"./train-data/{namespace}-{filename}")
+    loader = Docx2txtLoader(file_path=f"./train-data/{filename}")
     documents = loader.load()
     # Since only one document is expected, directly pass it to split_document
     chunks = split_document(documents[0])
